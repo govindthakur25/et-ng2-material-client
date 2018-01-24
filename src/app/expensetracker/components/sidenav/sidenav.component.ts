@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+const SMALL_SCREEN_BREAKPOINT = 720;
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  private mediaMatcher: MediaQueryList = 
+          matchMedia(`(max-width: ${SMALL_SCREEN_BREAKPOINT}px)`);
+
+  constructor() { 
+    this.mediaMatcher.addListener(m => this.mediaMatcher = m);
+  }
 
   ngOnInit() {
+  }
+
+  isSmallScreen(): boolean {
+    return this.mediaMatcher.matches;
   }
 
 }
