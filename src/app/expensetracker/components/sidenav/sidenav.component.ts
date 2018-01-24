@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 const SMALL_SCREEN_BREAKPOINT = 720;
 
@@ -12,8 +12,9 @@ export class SidenavComponent implements OnInit {
   private mediaMatcher: MediaQueryList = 
           matchMedia(`(max-width: ${SMALL_SCREEN_BREAKPOINT}px)`);
 
-  constructor() { 
-    this.mediaMatcher.addListener(m => this.mediaMatcher = m);
+  constructor(zone: NgZone) { 
+    this.mediaMatcher.addListener(m => 
+      zone.run(() => this.mediaMatcher = m));
   }
 
   ngOnInit() {
