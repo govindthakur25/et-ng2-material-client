@@ -1,1 +1,6 @@
-<mat-toolbar>Expense Manager</mat-toolbar>
+<mat-toolbar color="primary">
+    <button mat-button class="sidenav-toggle" (click)="toggleMenuIcon.emit()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Expense Manager</span>
+</mat-toolbar>
